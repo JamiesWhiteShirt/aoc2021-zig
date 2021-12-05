@@ -116,6 +116,7 @@ fn narrowDown(initialItems: []un, initialPivot: usize, initialMask: un, selectPa
 fn part2(reader: std.fs.File.Reader, buf: []u8) anyerror!void {
     const allocator = std.heap.page_allocator;
     var readings = std.ArrayList(un).init(allocator);
+    defer readings.deinit();
     while (try readInput(reader, buf)) |num| {
         try readings.append(num);
     }
